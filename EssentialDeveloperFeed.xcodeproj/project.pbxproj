@@ -57,7 +57,7 @@
 		6246901B283768EE006C4046 = {
 			isa = PBXGroup;
 			children = (
-				6246903F28376A89006C4046 /* EssentialFeed */,
+				6246903F28376A89006C4046 /* FeedFeature */,
 				62469027283768EE006C4046 /* EssentialDeveloperFeed */,
 				62469033283768EE006C4046 /* EssentialDeveloperFeedTests */,
 				62469026283768EE006C4046 /* Products */,
@@ -90,13 +90,13 @@
 			path = EssentialDeveloperFeedTests;
 			sourceTree = "<group>";
 		};
-		6246903F28376A89006C4046 /* EssentialFeed */ = {
+		6246903F28376A89006C4046 /* FeedFeature */ = {
 			isa = PBXGroup;
 			children = (
 				6246904028376A9B006C4046 /* FeedItem.swift */,
 				6246904228376AF2006C4046 /* FeedLoader.swift */,
 			);
-			path = EssentialFeed;
+			path = FeedFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
