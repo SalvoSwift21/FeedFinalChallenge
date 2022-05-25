@@ -56,10 +56,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		621E1E63283E02780042FBB4 /* EssentialFeed */ = {
+			isa = PBXGroup;
+			children = (
+				621E1E64283E028D0042FBB4 /* Feed API */,
+				6246903F28376A89006C4046 /* FeedFeature */,
+			);
+			path = EssentialFeed;
+			sourceTree = "<group>";
+		};
+		621E1E64283E028D0042FBB4 /* Feed API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Feed API";
+			sourceTree = "<group>";
+		};
 		6246901B283768EE006C4046 = {
 			isa = PBXGroup;
 			children = (
-				6246903F28376A89006C4046 /* FeedFeature */,
+				621E1E63283E02780042FBB4 /* EssentialFeed */,
 				62469027283768EE006C4046 /* EssentialDeveloperFeed */,
 				62469033283768EE006C4046 /* EssentialDeveloperFeedTests */,
 				62469026283768EE006C4046 /* Products */,
