@@ -21,10 +21,3 @@ public struct FeedItem: Equatable {
     public let location: String?
     public let imageURL: URL
 }
-
-extension FeedItem: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case id, description, location
-        case imageURL = "image"
-    }
-}
