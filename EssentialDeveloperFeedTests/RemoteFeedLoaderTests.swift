@@ -64,6 +64,11 @@ class RemoteFeedLoaderTests: XCTestCase {
         }
     }
     
+//    func test_load_deliversNoItemson200HTTPREsponsWithEmptyJSONList() {
+//        let (sut, client) = makeSUT()
+//        var capture
+//    }
+    
     //MARK: - Helper
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
@@ -75,12 +80,13 @@ class RemoteFeedLoaderTests: XCTestCase {
                         toCompleteWithError error: RemoteFeedLoader.Error,
                         when action: () -> Void,
                         file: StaticString = #filePath, line: UInt = #line) {
-        var captureErrors =  [RemoteFeedLoader.Error]()
+        var capturedResults =  [RemoteFeedLoader.Result]()
         sut.load {
-            captureErrors.append($0)
+            capturedResults.append($0)
         }
         action()
-        XCTAssertEqual(captureErrors, [error], file: file, line: line)
+        
+        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
     }
     
     private class HTTPClientSpy: HTTPClient {
