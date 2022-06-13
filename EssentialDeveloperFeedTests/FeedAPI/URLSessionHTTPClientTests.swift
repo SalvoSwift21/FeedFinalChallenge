@@ -58,39 +58,39 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     
     func test_getFromURL_failsOnRequestError() {
-        let error = NSError(domain: "any error", code: 1, userInfo: nil)
-        URLProtocolStub.stub(data: nil, response: nil, error: error)
+        let requestError = NSError(domain: "any error", code: 1, userInfo: nil)
         
+        let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
         
-        let exp = expectation(description: "Wait for")
-        makeSUT().get(from: anyURL()) { result in
-            switch result {
-            case let .failure(receivedError as NSError):
-                XCTAssertEqual(receivedError, error)
-            default:
-                XCTFail("Errors")
-            }
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(receivedError as NSError?, requestError)
     }
     
     func test_getFromURL_failsOnAllNilValues() {
-        URLProtocolStub.stub(data: nil, response: nil, error: nil)
-        
+        XCTAssertNil(resultErrorFor(data: nil, response: nil, error: nil))
+    }
+    
+    func resultErrorFor(data: Data?,
+                        response: URLResponse?,
+                        error: Error?,
+                        file: StaticString = #filePath,
+                        line: UInt = #line) -> Error? {
+        URLProtocolStub.stub(data: data, response: response, error: error)
+        let sut = makeSUT(file: file, line: line)
         let exp = expectation(description: "Wait for")
-        makeSUT().get(from: anyURL()) { result in
+        
+        var receivedError: Error?
+        sut.get(from: anyURL()) { result in
             switch result {
-            case .failure:
-                break
+            case let .failure(error):
+                receivedError = error
             default:
-                XCTFail("Errors")
+                XCTFail("Errors", file: file, line: line)
             }
             exp.fulfill()
         }
         
         wait(for: [exp], timeout: 1.0)
+        return receivedError
     }
 
     
