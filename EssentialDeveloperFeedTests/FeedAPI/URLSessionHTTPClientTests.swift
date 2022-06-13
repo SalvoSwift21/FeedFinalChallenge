@@ -15,7 +15,7 @@ class URLSessionHTTPClient {
         self.session = session
     }
     
-    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void){
         session.dataTask(with: url) { _, _, error in
             if let error = error {
                 completion(.failure(error))
@@ -30,7 +30,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     func test_getFromURL_failsOnRequestError() {
         URLProtocolStub.startInterceptiongRequests()
         let url = URL(string: "https://any-url.com")!
-        let error = NSError(domain: "any error", code: 1)
+        let error = NSError(domain: "any error", code: 1, userInfo: nil)
         URLProtocolStub.stub(url: url, data: nil, response: nil, error: error)
         
         let sut = URLSessionHTTPClient()
@@ -92,11 +92,6 @@ class URLSessionHTTPClientTests: XCTestCase {
             if let response = stub.response {
                 client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
             }
-            
-            if let error = stub.error {
-                client?.urlProtocol(self, didFailWithError: error)
-            }
-            
             
             if let error = stub.error {
                 client?.urlProtocol(self, didFailWithError: error)
