@@ -21,6 +21,8 @@ class URLSessionHTTPClient {
         session.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
+            } else if let data = data,  !data.isEmpty, let response = response as? HTTPURLResponse {
+                completion(.success(data, response))
             } else {
                 completion(.failure(UnexpectedValuesRepresentation()))
             }
@@ -62,7 +64,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
         
-        XCTAssertEqual(receivedError as NSError?, requestError)
+        XCTAssertEqual((receivedError as NSError?)?.code, requestError.code)
     }
     
     func test_getFromURL_failsOnAllInvalidRappresentationCases() {
@@ -78,6 +80,26 @@ class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertNotNil(resultErrorFor(data: anyData(), response: anyHTTPURLREsponse(), error: anyError()))
         
         XCTAssertNotNil(resultErrorFor(data: anyData(), response: anynonHTTPURLResponse(), error: nil))
+    }
+    
+    func test_getFromURL_succedsOnHTTPURLResponseWithData() {
+        let data = anyData()
+        let response = anyHTTPURLREsponse()
+        
+        URLProtocolStub.stub(data: data, response: response)
+        let exp = expectation(description: "Wait for")
+        makeSUT().get(from: anyURL()) { result in
+            switch result {
+            case let .success(receivedData, receivedResponse):
+                XCTAssertEqual(receivedData, data)
+                XCTAssertEqual(receivedResponse.statusCode, response.statusCode)
+            default:
+                XCTFail("Error")
+            }
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     func resultErrorFor(data: Data?,
