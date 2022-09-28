@@ -29,6 +29,10 @@ public final class LocalFeedLoader {
         }
     }
     
+    public func load() {
+        store.retrive()
+    }
+    
     fileprivate func cache(feed: [FeedImage], with completion: @escaping (SaveResult) -> Void) {
         store.insert(feed.toLoacal(), timestamp: currentDate()) { [weak self] error in
             guard self != nil else { return }
