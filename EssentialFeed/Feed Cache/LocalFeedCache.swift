@@ -32,7 +32,7 @@ public final class LocalFeedLoader {
     }
     
     public func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrive(completion: { result in
+        store.retrive(completion: { [unowned self] result in
             switch result {
             case let .failure(error):
                 completion(.failure(error))
