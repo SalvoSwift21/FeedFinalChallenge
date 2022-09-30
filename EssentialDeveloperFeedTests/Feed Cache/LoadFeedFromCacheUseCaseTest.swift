@@ -113,7 +113,7 @@ final class LoadFeedFromCacheUseCaseTest: XCTestCase {
         let (sut, store) = makeSUT()
         let feed = uniqueImageFeed()
         let fixedCurrentDate = Date()
-        let expiredTimestamp = fixedCurrentDate.minusFeedCacheMaxAge().adding(days: -1)
+        let expiredTimestamp = fixedCurrentDate.minusFeedCacheMaxAge().adding(seconds: -1)
         
         sut.load(completion: { _ in })
         store.completeRetrieval(with: feed.local, timestamp: expiredTimestamp)
