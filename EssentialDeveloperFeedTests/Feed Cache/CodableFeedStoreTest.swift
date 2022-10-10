@@ -73,7 +73,7 @@ class CodableFeedStoreTest: XCTestCase {
     }
     
     func test_retrive_deliversEmptyOnEmptyCache() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         
         let exp = expectation(description: "Wait for cache retrieval")
         
@@ -135,5 +135,12 @@ class CodableFeedStoreTest: XCTestCase {
         }
             
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    //MARK: Helper
+    
+    func makeSUT() -> CodableFeedStore {
+        let sut = CodableFeedStore()
+        return sut
     }
 }
