@@ -37,7 +37,11 @@ class CodableFeedStore {
         }
     }
     
-    private let storeUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("image-feed.store")
+    private let storeUrl: URL
+    
+    init(storeUrl: URL) {
+        self.storeUrl = storeUrl
+    }
     
     func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping FeedStore.InsertCompletion) {
         let encoder = JSONEncoder()
@@ -92,7 +96,7 @@ class CodableFeedStoreTest: XCTestCase {
     }
     
     func test_retrive_hasNoSideEffectsOnEmptyCache() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         
         let exp = expectation(description: "Wait for cache retrieval")
         
@@ -113,13 +117,13 @@ class CodableFeedStoreTest: XCTestCase {
     }
     
     func test_retriveAfterInsertingToEmptyCache_deliversInsertedValues() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         let feed = uniqueImageFeed().local
         let timestamp = Date()
         
         let exp = expectation(description: "Wait for cache retrieval")
         
-        sut.insert(feed, timestamp: timestamp) { insertionError in
+        sut.insert(feed, timestamp: timestamp){ insertionError in
             XCTAssertNil(insertionError, "Expected geed to be inserted")
             sut.retrive { retrivedResult in
                 switch retrivedResult {
@@ -141,7 +145,8 @@ class CodableFeedStoreTest: XCTestCase {
     
     func makeSUT(file: StaticString = #filePath,
                  line: UInt = #line) -> CodableFeedStore {
-        let sut = CodableFeedStore()
+        let storeUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("image-feed.store")
+        let sut = CodableFeedStore(storeUrl: storeUrl)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
