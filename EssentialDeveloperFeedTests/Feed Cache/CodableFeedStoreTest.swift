@@ -194,7 +194,7 @@ class CodableFeedStoreTest: XCTestCase {
     
     private func makeSUT(storeURL: URL? = nil,
                          file: StaticString = #filePath,
-                         line: UInt = #line) -> CodableFeedStore {
+                         line: UInt = #line) -> FeedStore {
         let sut = CodableFeedStore(storeUrl: storeURL ?? testSpecifStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
@@ -202,7 +202,7 @@ class CodableFeedStoreTest: XCTestCase {
     
     @discardableResult
     private func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date),
-                        to sut: CodableFeedStore,
+                        to sut: FeedStore,
                         file: StaticString = #filePath, line: UInt = #line) -> Error? {
         let exp = expectation(description: "Wait for cache insertion")
         var insertionError: Error?
@@ -214,7 +214,7 @@ class CodableFeedStoreTest: XCTestCase {
         return insertionError
     }
     
-    private func deleteCache(from sut: CodableFeedStore) -> Error? {
+    private func deleteCache(from sut: FeedStore) -> Error? {
         let exp = expectation(description: "Wait for cache deletion")
         var deletionError: Error?
         sut.deleteCachedFeed { receivedDeletionError in
@@ -226,14 +226,14 @@ class CodableFeedStoreTest: XCTestCase {
     }
 
     
-    private func expect(_ sut: CodableFeedStore,
+    private func expect(_ sut: FeedStore,
                         toRetriveTwice expectedResult: RetrieveCachedFeedResult,
                         file: StaticString = #filePath, line: UInt = #line) {
         expect(sut, toRetrive: expectedResult, file: file, line: line)
         expect(sut, toRetrive: expectedResult, file: file, line: line)
     }
     
-    private func expect(_ sut: CodableFeedStore,
+    private func expect(_ sut: FeedStore,
                         toRetrive expectedResult: RetrieveCachedFeedResult,
                         file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "wait for load completion")
