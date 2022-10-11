@@ -55,9 +55,13 @@ class CodableFeedStore {
         guard let data = try? Data(contentsOf: storeUrl) else {
             return completion(.empty)
         }
-        let decoder = JSONDecoder()
-        let cache = try! decoder.decode(Cache.self, from: data)
-        completion(.found(feed: cache.localFeed, timestamp: cache.date))
+        do {
+            let decoder = JSONDecoder()
+            let cache = try decoder.decode(Cache.self, from: data)
+            completion(.found(feed: cache.localFeed, timestamp: cache.date))
+        } catch {
+            completion(.failure(error))
+        }
     }
 
 }
@@ -103,6 +107,12 @@ class CodableFeedStoreTest: XCTestCase {
         expect(sut, toRetriveTwice: .found(feed: feed, timestamp: timestamp))
     }
     
+    func test_retrive_deliversFailureOnRetrievalError() {
+        let sut = makeSUT()
+        try! "invalid data".write(to: testSpecifStoreURL(), atomically: false, encoding: .utf8)
+        expect(sut, toRetrive: .failure(anyError()))
+    }
+    
     //MARK: Helper
     
     private func makeSUT(file: StaticString = #filePath,
@@ -137,7 +147,8 @@ class CodableFeedStoreTest: XCTestCase {
         
         sut.retrive { result in
             switch (expectedResult, result) {
-            case (.empty, .empty):
+            case (.empty, .empty),
+                 (.failure, .failure):
                 break
             case let (.found(expected), .found(retrived)):
                 XCTAssertEqual(retrived.feed, expected.feed, file: file, line: line)
