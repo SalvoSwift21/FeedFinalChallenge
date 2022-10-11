@@ -8,7 +8,7 @@
 import XCTest
 import EssentialDeveloperFeed
 
-class CodableFeedStore {
+class CodableFeedStore: FeedStore {
     
     private struct Cache: Codable {
         let feed: [CodableFeedImage]
@@ -43,7 +43,7 @@ class CodableFeedStore {
         self.storeUrl = storeUrl
     }
     
-    func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping FeedStore.InsertCompletion) {
+    func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertCompletion) {
         do {
             let encoder = JSONEncoder()
             let cache = Cache(feed: feed.map(CodableFeedImage.init), date: timestamp)
@@ -55,7 +55,7 @@ class CodableFeedStore {
         }
     }
     
-    func retrive(completion: @escaping FeedStore.RetrievalCompletion) {
+    func retrive(completion: @escaping RetrievalCompletion) {
         guard let data = try? Data(contentsOf: storeUrl) else {
             return completion(.empty)
         }
@@ -68,7 +68,7 @@ class CodableFeedStore {
         }
     }
     
-    func deleteCachedFeed(completion: @escaping FeedStore.DeletionCompletion) {
+    func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         guard FileManager.default.fileExists(atPath: storeUrl.path) else {
             return completion(nil)
         }
