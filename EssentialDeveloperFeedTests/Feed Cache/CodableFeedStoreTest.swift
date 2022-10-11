@@ -139,6 +139,35 @@ class CodableFeedStoreTest: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_retrive_noSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        let feed = uniqueImageFeed().local
+        let timestamp = Date()
+        
+        let exp = expectation(description: "Wait for cache retrieval")
+        
+        sut.insert(feed, timestamp: timestamp){ insertionError in
+            XCTAssertNil(insertionError, "Expected geed to be inserted")
+            sut.retrive { firstResult in
+                sut.retrive { secondResult in
+                    switch (firstResult, secondResult) {
+                    case let (.found(firstFound), .found(secondFound)):
+                        XCTAssertEqual(firstFound.feed, feed)
+                        XCTAssertEqual(firstFound.timestamp, timestamp)
+                        XCTAssertEqual(secondFound.feed, feed)
+                        XCTAssertEqual(secondFound.timestamp, timestamp)
+                    default:
+                        XCTFail()
+                    }
+                    
+                    exp.fulfill()
+                }
+            }
+        }
+            
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     //MARK: Helper
     
     private func makeSUT(file: StaticString = #filePath,
