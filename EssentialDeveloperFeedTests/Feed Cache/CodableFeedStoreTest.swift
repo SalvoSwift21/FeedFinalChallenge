@@ -8,36 +8,11 @@
 import XCTest
 import EssentialDeveloperFeed
 
-protocol FeedStoreSpecs {
-    func test_retrive_deliversEmptyOnEmptyCache()
-    func test_retrive_hasNoSideEffectsOnEmptyCache()
-    func test_retrive_deliversFoundValuesOnNonEmptyCache()
-    func test_retrive_noSideEffectsOnEmptyCache()
 
-    func test_insert_overridesPreviouslyInsertedCacheValues()
+typealias FailableFeedStore = FailableDeleteFeedStoreSpecs & FailableInsertFeedStoreSpecs & FailableRetrieveFeedStoreSpecs
 
-    func test_delete_hasNoSideEffectsOnEmptyCache()
-    func test_delete_emptiesPreviouslyInsertedCache()
+class CodableFeedStoreTests: XCTestCase, FailableFeedStore {
 
-    func test_storeSideEffects_runSerially()
-}
-
-protocol FailableRetrieveFeedStoreSpecs {
-    func test_retrive_deliversFailureOnRetrievalError()
-    func test_retrive_hasNoSideEffectsOnFailure()
-}
-
-protocol FailableInsertFeedStoreSpecs {
-    func test_insert_deliversErrorOnInsertionError()
-    func test_insert_hasNotSideEffectsOnInsertionError()
-}
-
-protocol FailableDeleteFeedStoreSpecs {
-    func test_delete_deliversErrorOnDeletionError()
-}
-
-class CodableFeedStoreTests: XCTestCase {
-    
     override func setUp() {
         super.setUp()
         
@@ -91,7 +66,7 @@ class CodableFeedStoreTests: XCTestCase {
         expect(sut, toRetrieve: .failure(anyError()))
     }
     
-    func test_retrieve_hasNoSideEffectsOnFailure() {
+    func test_retrive_hasNoSideEffectsOnFailure() {
         let storeURL = testSpecificStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
@@ -139,7 +114,7 @@ class CodableFeedStoreTests: XCTestCase {
         XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
     }
     
-    func test_insert_hasNoSideEffectsOnInsertionError() {
+    func test_insert_hasNotSideEffectsOnInsertionError() {
         let invalidStoreURL = URL(string: "invalid://store-url")!
         let sut = makeSUT(storeURL: invalidStoreURL)
         let feed = uniqueImageFeed().local
