@@ -44,7 +44,7 @@ public class CodableFeedStore: FeedStore {
     }
     
     
-    public func retrive(completion: @escaping RetrievalCompletion) {
+    public func retrieve(completion: @escaping RetrievalCompletion) {
         let storeURL = self.storeURL
         queue.async {
             guard let data = try? Data(contentsOf: storeURL) else {
@@ -66,7 +66,7 @@ public class CodableFeedStore: FeedStore {
             do {
                 let encoder = JSONEncoder()
                 let cache = Cache(feed: feed.map(CodableFeedImage.init), date: timestamp)
-                let econded = try! encoder.encode(cache)
+                let econded = try encoder.encode(cache)
                 try econded.write(to: storeURL)
                 completion(nil)
             } catch {
