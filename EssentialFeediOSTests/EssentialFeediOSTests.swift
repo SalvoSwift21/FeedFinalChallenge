@@ -25,7 +25,7 @@ final class FeedViewControllerTests: XCTestCase {
 
     func test_init_doesNotLoadFeed() {
         let loader = LoaderSpy()
-        let sut = FeedViewController(loader: loader)
+        _ = FeedViewController(loader: loader)
         XCTAssertEqual (loader.loadCallCount, 0)
     }
     
