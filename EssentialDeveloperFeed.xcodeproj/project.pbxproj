@@ -16,10 +16,11 @@
 		6246904128376A9B006C4046 /* FeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6246904028376A9B006C4046 /* FeedImage.swift */; };
 		6246904328376AF2006C4046 /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6246904228376AF2006C4046 /* FeedLoader.swift */; };
 		6246904528376C18006C4046 /* LoadFeedFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6246904428376C18006C4046 /* LoadFeedFromRemoteUseCaseTests.swift */; };
+		6253DA37292224E80028B552 /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253DA36292224E80028B552 /* FeedImageDataLoader.swift */; };
 		625C6D1C28DCB717004016D8 /* CacheFeedUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625C6D1B28DCB717004016D8 /* CacheFeedUseCaseTest.swift */; };
 		62601FA829168BD3008CBA90 /* EssentialFeediOS.docc in Sources */ = {isa = PBXBuildFile; fileRef = 62601FA729168BD3008CBA90 /* EssentialFeediOS.docc */; };
 		62601FAE29168BD4008CBA90 /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62601FA429168BD3008CBA90 /* EssentialFeediOS.framework */; };
-		62601FB329168BD4008CBA90 /* EssentialFeediOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62601FB229168BD4008CBA90 /* EssentialFeediOSTests.swift */; };
+		62601FB329168BD4008CBA90 /* FeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62601FB229168BD4008CBA90 /* FeedViewControllerTests.swift */; };
 		62601FB429168BD4008CBA90 /* EssentialFeediOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 62601FA629168BD3008CBA90 /* EssentialFeediOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62601FBD2918EAC2008CBA90 /* EssentialDeveloperFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62469025283768EE006C4046 /* EssentialDeveloperFeed.framework */; };
 		62601FBE2918EAC2008CBA90 /* EssentialDeveloperFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62469025283768EE006C4046 /* EssentialDeveloperFeed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -118,12 +119,13 @@
 		6246904028376A9B006C4046 /* FeedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImage.swift; sourceTree = "<group>"; };
 		6246904228376AF2006C4046 /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 		6246904428376C18006C4046 /* LoadFeedFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		6253DA36292224E80028B552 /* FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoader.swift; sourceTree = "<group>"; };
 		625C6D1B28DCB717004016D8 /* CacheFeedUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedUseCaseTest.swift; sourceTree = "<group>"; };
 		62601FA429168BD3008CBA90 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62601FA629168BD3008CBA90 /* EssentialFeediOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EssentialFeediOS.h; sourceTree = "<group>"; };
 		62601FA729168BD3008CBA90 /* EssentialFeediOS.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = EssentialFeediOS.docc; sourceTree = "<group>"; };
 		62601FAD29168BD3008CBA90 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		62601FB229168BD4008CBA90 /* EssentialFeediOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeediOSTests.swift; sourceTree = "<group>"; };
+		62601FB229168BD4008CBA90 /* FeedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewControllerTests.swift; sourceTree = "<group>"; };
 		62601FC429190BE0008CBA90 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		626D614828E2090400AFCA13 /* LocalFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedLoader.swift; sourceTree = "<group>"; };
 		626D614A28E2096C00AFCA13 /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
@@ -288,6 +290,71 @@
 			path = FeedFeature;
 			sourceTree = "<group>";
 		};
+		6253DA2E2922241C0028B552 /* Feed UI */ = {
+			isa = PBXGroup;
+			children = (
+				6253DA2F2922242A0028B552 /* Controllers */,
+				6253DA302922243D0028B552 /* Views */,
+			);
+			path = "Feed UI";
+			sourceTree = "<group>";
+		};
+		6253DA2F2922242A0028B552 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				62601FC429190BE0008CBA90 /* FeedViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6253DA302922243D0028B552 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				629D0EC3291A3C70001A0B21 /* FeedImageCell.swift */,
+				62E616A2291E30A700C4E686 /* UIView+Shimmering.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6253DA312922245D0028B552 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6253DA322922246A0028B552 /* Feed UI */ = {
+			isa = PBXGroup;
+			children = (
+				6253DA332922247A0028B552 /* Controllers */,
+			);
+			path = "Feed UI";
+			sourceTree = "<group>";
+		};
+		6253DA332922247A0028B552 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6253DA34292224930028B552 /* Helpers */,
+				62601FB229168BD4008CBA90 /* FeedViewControllerTests.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6253DA34292224930028B552 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6253DA35292224C00028B552 /* Feed Image Loader */ = {
+			isa = PBXGroup;
+			children = (
+				6253DA36292224E80028B552 /* FeedImageDataLoader.swift */,
+			);
+			path = "Feed Image Loader";
+			sourceTree = "<group>";
+		};
 		625C6D1A28DCB6E4004016D8 /* Feed Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,9 +373,8 @@
 			children = (
 				62601FA629168BD3008CBA90 /* EssentialFeediOS.h */,
 				62601FA729168BD3008CBA90 /* EssentialFeediOS.docc */,
-				62601FC429190BE0008CBA90 /* FeedViewController.swift */,
-				629D0EC3291A3C70001A0B21 /* FeedImageCell.swift */,
-				62E616A2291E30A700C4E686 /* UIView+Shimmering.swift */,
+				6253DA35292224C00028B552 /* Feed Image Loader */,
+				6253DA2E2922241C0028B552 /* Feed UI */,
 			);
 			path = EssentialFeediOS;
 			sourceTree = "<group>";
@@ -316,7 +382,8 @@
 		62601FB129168BD4008CBA90 /* EssentialFeediOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				62601FB229168BD4008CBA90 /* EssentialFeediOSTests.swift */,
+				6253DA312922245D0028B552 /* Helpers */,
+				6253DA322922246A0028B552 /* Feed UI */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
@@ -696,6 +763,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6253DA37292224E80028B552 /* FeedImageDataLoader.swift in Sources */,
 				62601FA829168BD3008CBA90 /* EssentialFeediOS.docc in Sources */,
 				62E616A3291E30A700C4E686 /* UIView+Shimmering.swift in Sources */,
 				629D0EC4291A3C70001A0B21 /* FeedImageCell.swift in Sources */,
@@ -708,7 +776,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62601FC32918EB58008CBA90 /* XCTestCaseMemoryTracking.swift in Sources */,
-				62601FB329168BD4008CBA90 /* EssentialFeediOSTests.swift in Sources */,
+				62601FB329168BD4008CBA90 /* FeedViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
