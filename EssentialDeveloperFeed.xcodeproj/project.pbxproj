@@ -15,6 +15,11 @@
 		6230B0722927A17E00F9666A /* FeedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6230B0712927A17E00F9666A /* FeedImageViewModel.swift */; };
 		623A0C622930A840009A1E6B /* FeedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A0C612930A840009A1E6B /* FeedLocalizationTests.swift */; };
 		623A0C642930A8C4009A1E6B /* FeedUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A0C632930A8C4009A1E6B /* FeedUIIntegrationTests+Localization.swift */; };
+		623A0C662930AB4D009A1E6B /* FeedImageDataLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A0C652930AB4D009A1E6B /* FeedImageDataLoaderPresentationAdapter.swift */; };
+		623A0C682930AB66009A1E6B /* FeedLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A0C672930AB66009A1E6B /* FeedLoaderPresentationAdapter.swift */; };
+		623A0C6A2930AB7F009A1E6B /* FeedViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A0C692930AB7F009A1E6B /* FeedViewAdapter.swift */; };
+		623A0C6C2930AB9F009A1E6B /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A0C6B2930AB9F009A1E6B /* MainQueueDispatchDecorator.swift */; };
+		623A0C6E2930ABBA009A1E6B /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A0C6D2930ABBA009A1E6B /* WeakRefVirtualProxy.swift */; };
 		6246902A283768EE006C4046 /* EssentialDeveloperFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = 62469029283768EE006C4046 /* EssentialDeveloperFeed.docc */; };
 		62469030283768EE006C4046 /* EssentialDeveloperFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62469025283768EE006C4046 /* EssentialDeveloperFeed.framework */; };
 		62469035283768EE006C4046 /* EssentialDeveloperFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62469034283768EE006C4046 /* EssentialDeveloperFeedTests.swift */; };
@@ -139,6 +144,11 @@
 		6230B0712927A17E00F9666A /* FeedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageViewModel.swift; sourceTree = "<group>"; };
 		623A0C612930A840009A1E6B /* FeedLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLocalizationTests.swift; sourceTree = "<group>"; };
 		623A0C632930A8C4009A1E6B /* FeedUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
+		623A0C652930AB4D009A1E6B /* FeedImageDataLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
+		623A0C672930AB66009A1E6B /* FeedLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
+		623A0C692930AB7F009A1E6B /* FeedViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewAdapter.swift; sourceTree = "<group>"; };
+		623A0C6B2930AB9F009A1E6B /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
+		623A0C6D2930ABBA009A1E6B /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		62469025283768EE006C4046 /* EssentialDeveloperFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialDeveloperFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62469028283768EE006C4046 /* EssentialDeveloperFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EssentialDeveloperFeed.h; sourceTree = "<group>"; };
 		62469029283768EE006C4046 /* EssentialDeveloperFeed.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = EssentialDeveloperFeed.docc; sourceTree = "<group>"; };
@@ -283,6 +293,11 @@
 			isa = PBXGroup;
 			children = (
 				6230B06C29261B4800F9666A /* FeedUIComposer.swift */,
+				623A0C652930AB4D009A1E6B /* FeedImageDataLoaderPresentationAdapter.swift */,
+				623A0C672930AB66009A1E6B /* FeedLoaderPresentationAdapter.swift */,
+				623A0C692930AB7F009A1E6B /* FeedViewAdapter.swift */,
+				623A0C6B2930AB9F009A1E6B /* MainQueueDispatchDecorator.swift */,
+				623A0C6D2930ABBA009A1E6B /* WeakRefVirtualProxy.swift */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -854,16 +869,21 @@
 			files = (
 				6253DA37292224E80028B552 /* FeedImageDataLoader.swift in Sources */,
 				62AE669F292CAFBE009BB99B /* FeedLoadingViewModel.swift in Sources */,
+				623A0C6E2930ABBA009A1E6B /* WeakRefVirtualProxy.swift in Sources */,
 				62601FA829168BD3008CBA90 /* EssentialFeediOS.docc in Sources */,
 				62224026292B5F8600096617 /* FeedPresenter.swift in Sources */,
 				6230B06A2926179500F9666A /* FeedImageCellController.swift in Sources */,
 				6230B0722927A17E00F9666A /* FeedImageViewModel.swift in Sources */,
+				623A0C682930AB66009A1E6B /* FeedLoaderPresentationAdapter.swift in Sources */,
 				62AE669D292CAE6B009BB99B /* FeedImagePresenter.swift in Sources */,
 				629AA4A8292D7E0900E3AA31 /* UIImageView+Animations.swift in Sources */,
 				62E616A3291E30A700C4E686 /* UIView+Shimmering.swift in Sources */,
+				623A0C6C2930AB9F009A1E6B /* MainQueueDispatchDecorator.swift in Sources */,
 				6230B06D29261B4800F9666A /* FeedUIComposer.swift in Sources */,
 				629D0EC4291A3C70001A0B21 /* FeedImageCell.swift in Sources */,
 				629AA4AA292D7E2600E3AA31 /* UITableView+Dequeueing.swift in Sources */,
+				623A0C662930AB4D009A1E6B /* FeedImageDataLoaderPresentationAdapter.swift in Sources */,
+				623A0C6A2930AB7F009A1E6B /* FeedViewAdapter.swift in Sources */,
 				62601FC529190BE0008CBA90 /* FeedViewController.swift in Sources */,
 				62AE66A1292CAFED009BB99B /* FeedViewModel.swift in Sources */,
 			);
