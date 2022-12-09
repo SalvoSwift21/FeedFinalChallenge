@@ -26,7 +26,7 @@ class CacheFeedUseCaseTest: XCTestCase {
     
     func test_save_doesNotRequestCacheInsertionOnDeltionError() {
         let (sut, store) = makeSUT()
-        let error = anyError()
+        let error = anyNSError()
         sut.save(uniqueImageFeed().model) { _ in }
         store.completeDeletion(with: error)
         
@@ -44,7 +44,7 @@ class CacheFeedUseCaseTest: XCTestCase {
     
     func test_save_failsOnDeltionError() {
         let (sut, store) = makeSUT()
-        let error = anyError()
+        let error = anyNSError()
         expect(sut, toCompleteWithError: error) {
             store.completeDeletion(with: error)
         }
@@ -52,7 +52,7 @@ class CacheFeedUseCaseTest: XCTestCase {
     
     func test_save_failsOnInsertionError() {
         let (sut, store) = makeSUT()
-        let error = anyError()
+        let error = anyNSError()
         expect(sut, toCompleteWithError: error) {
             store.completeDeletionSuccessfully()
             store.completeInsertion(with: error)
@@ -75,7 +75,7 @@ class CacheFeedUseCaseTest: XCTestCase {
         sut?.save(uniqueImageFeed().model) { receivedResults.append($0) }
         
         sut = nil
-        store.completeDeletion(with: anyError())
+        store.completeDeletion(with: anyNSError())
         
         XCTAssertTrue(receivedResults.isEmpty)
     }
@@ -89,7 +89,7 @@ class CacheFeedUseCaseTest: XCTestCase {
         
         store.completeDeletionSuccessfully()
         sut = nil
-        store.completeInsertion(with: anyError())
+        store.completeInsertion(with: anyNSError())
         
         XCTAssertTrue(receivedResults.isEmpty)
     }

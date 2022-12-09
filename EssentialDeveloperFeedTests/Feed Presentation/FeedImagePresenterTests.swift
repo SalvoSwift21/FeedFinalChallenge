@@ -66,7 +66,7 @@ class FeedImagePresenterTests: XCTestCase {
         let image = uniqueImage()
         let (sut, view) = makeSUT()
         
-        sut.didFinishLoadingImageData(with: anyError(), for: image)
+        sut.didFinishLoadingImageData(with: anyNSError(), for: image)
         
         let message = view.messages.first
         XCTAssertEqual(view.messages.count, 1)

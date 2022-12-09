@@ -24,7 +24,7 @@ final class LoadFeedFromCacheUseCaseTest: XCTestCase {
 
     func test_load_failsOnRetrievalError() {
         let (sut, store) = makeSUT()
-        let retrievalError = anyError()
+        let retrievalError = anyNSError()
         expect(sut, toCompleteWith: .failure(retrievalError)) {
             store.completeRetrieval(with: retrievalError)
         }
@@ -72,7 +72,7 @@ final class LoadFeedFromCacheUseCaseTest: XCTestCase {
         let (sut, store) = makeSUT()
         
         sut.load(completion: { _ in })
-        store.completeRetrieval(with: anyError())
+        store.completeRetrieval(with: anyNSError())
         XCTAssertEqual(store.receivedMessages, [.retrive])
     }
     
