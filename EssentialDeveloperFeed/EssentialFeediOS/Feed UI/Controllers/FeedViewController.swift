@@ -5,31 +5,35 @@
 //  Created by Salvatore Milazzo on 07/11/22.
 //
 
-import Foundation
+
 import UIKit
 import EssentialDeveloperFeed
 
-protocol FeedViewControllerDelegate {
+public protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
 }
 
 public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, FeedLoadingView, FeedErrorView {
-
     @IBOutlet private(set) public var errorView: ErrorView?
-
-    var delegate: FeedViewControllerDelegate?
-    var tableModel = [FeedImageCellController]() {
+    
+    private var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
-    private var cellControllers = [IndexPath: FeedImageCellController]()
+    
+    public var delegate: FeedViewControllerDelegate?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
         refresh()
     }
     
     @IBAction private func refresh() {
         delegate?.didRequestFeedRefresh()
+    }
+    
+    public func display(_ cellControllers: [FeedImageCellController]) {
+        tableModel = cellControllers
     }
     
     public func display(_ viewModel: FeedLoadingViewModel) {
