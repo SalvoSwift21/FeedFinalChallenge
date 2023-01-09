@@ -23,7 +23,7 @@
 		62A294532951A33A00F362B5 /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A294352951A20F00F362B5 /* UIButton+TestHelpers.swift */; };
 		62A294542951A33A00F362B5 /* FeedUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A294332951A20F00F362B5 /* FeedUIIntegrationTests+Localization.swift */; };
 		62A294552951A33A00F362B5 /* FeedViewControllerTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A294392951A20F00F362B5 /* FeedViewControllerTests+Assertions.swift */; };
-		62A294562951A33A00F362B5 /* FeedViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A294322951A20F00F362B5 /* FeedViewControllerTests+LoaderSpy.swift */; };
+		62A294562951A33A00F362B5 /* FeedUIIntegrationTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A294322951A20F00F362B5 /* FeedUIIntegrationTests+LoaderSpy.swift */; };
 		62A294572951A33A00F362B5 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A294312951A20F00F362B5 /* UIImage+TestHelpers.swift */; };
 		62A294582951A33A00F362B5 /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A294362951A20F00F362B5 /* UIControl+TestHelpers.swift */; };
 		62A294592951A33A00F362B5 /* FeedImageCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A294372951A20F00F362B5 /* FeedImageCell+TestHelpers.swift */; };
@@ -69,7 +69,7 @@
 		6294748E294710E600CCCEFA /* EssentialDeveloperFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialDeveloperFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6294748F294710E600CCCEFA /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A294312951A20F00F362B5 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
-		62A294322951A20F00F362B5 /* FeedViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
+		62A294322951A20F00F362B5 /* FeedUIIntegrationTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		62A294332951A20F00F362B5 /* FeedUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
 		62A294342951A20F00F362B5 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		62A294352951A20F00F362B5 /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 			children = (
 				62A294382951A20F00F362B5 /* FeedViewController+TestHelpers.swift */,
 				62A294372951A20F00F362B5 /* FeedImageCell+TestHelpers.swift */,
-				62A294322951A20F00F362B5 /* FeedViewControllerTests+LoaderSpy.swift */,
+				62A294322951A20F00F362B5 /* FeedUIIntegrationTests+LoaderSpy.swift */,
 				62A294392951A20F00F362B5 /* FeedViewControllerTests+Assertions.swift */,
 				62A294332951A20F00F362B5 /* FeedUIIntegrationTests+Localization.swift */,
 				62A294312951A20F00F362B5 /* UIImage+TestHelpers.swift */,
@@ -312,7 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62A294562951A33A00F362B5 /* FeedViewControllerTests+LoaderSpy.swift in Sources */,
+				62A294562951A33A00F362B5 /* FeedUIIntegrationTests+LoaderSpy.swift in Sources */,
 				62A294512951A33A00F362B5 /* FeedViewController+TestHelpers.swift in Sources */,
 				62A2945F2951A41E00F362B5 /* SceneDelegateTests.swift in Sources */,
 				62DE97092948630A00A68CDD /* XCTestCase+MemoryLeakTracking.swift in Sources */,
