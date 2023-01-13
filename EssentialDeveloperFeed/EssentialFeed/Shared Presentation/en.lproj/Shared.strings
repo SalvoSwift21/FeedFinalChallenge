@@ -1,0 +1,9 @@
+/* 
+  Shared.strings
+  EssentialDeveloperFeed
+
+  Created by Salvatore Milazzo on 13/01/23.
+  
+*/
+
+"GENERIC_CONNECTION_ERROR" = "Couldn't connect to server";
