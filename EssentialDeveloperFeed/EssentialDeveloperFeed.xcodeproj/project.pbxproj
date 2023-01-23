@@ -639,8 +639,8 @@
 		62698276297DF31900D6A419 /* Image Comments UI */ = {
 			isa = PBXGroup;
 			children = (
-				6269827C297DF3BA00D6A419 /* snapshots */,
 				62698278297DF35B00D6A419 /* ImageCommentsSnapshotTests.swift */,
+				6269827C297DF3BA00D6A419 /* snapshots */,
 			);
 			path = "Image Comments UI";
 			sourceTree = "<group>";
@@ -648,8 +648,8 @@
 		62698277297DF32400D6A419 /* Shared UI */ = {
 			isa = PBXGroup;
 			children = (
-				6269827D297DF3BF00D6A419 /* snapshots */,
 				6269827A297DF3B100D6A419 /* ListSnapshotTests.swift */,
+				6269827D297DF3BF00D6A419 /* snapshots */,
 			);
 			path = "Shared UI";
 			sourceTree = "<group>";
