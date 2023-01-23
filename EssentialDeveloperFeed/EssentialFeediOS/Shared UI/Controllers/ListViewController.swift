@@ -16,7 +16,7 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
             controller.dataSource.tableView(tableView, cellForRowAt: index)
         }
     }()
-
+    
     public var onRefresh: (() -> Void)?
     
     public override func viewDidLoad() {
@@ -40,7 +40,7 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         tableView.sizeTableHeaderToFit()
     }
     
@@ -64,7 +64,7 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
             dataSource.apply(snapshot)
         }
     }
-
+    
     public func display(_ viewModel: ResourceLoadingViewModel) {
         refreshControl?.update(isRefreshing: viewModel.isLoading)
     }
@@ -76,6 +76,11 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let dl = cellController(at: indexPath)?.delegate
         dl?.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
+    }
+    
+    public override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let dl = cellController(at: indexPath)?.delegate
+        dl?.tableView?(tableView, willDisplay: cell, forRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
