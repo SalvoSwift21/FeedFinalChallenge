@@ -18,16 +18,18 @@ public final class FeedImageCellController: NSObject {
     
     private let viewModel: FeedImageViewModel
     private let delegate: FeedImageCellControllerDelegate
+    private let selection: () -> Void
     private var cell: FeedImageCell?
     
-    public init(viewModel: FeedImageViewModel, delegate: FeedImageCellControllerDelegate) {
+    public init(viewModel: FeedImageViewModel, delegate: FeedImageCellControllerDelegate, selection: @escaping () -> Void) {
         self.viewModel = viewModel
         self.delegate = delegate
+        self.selection = selection
     }
 }
 
 extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
-    
+        
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -45,14 +47,12 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         return cell!
     }
     
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.cell = cell as? FeedImageCell
-        delegate.didRequestImage()
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection()
     }
     
     public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.cell = nil
-        delegate.didCancelImageRequest()
+        cancelLoad()
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
@@ -72,7 +72,7 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         cell = nil
     }
 }
-
+ 
 extension FeedImageCellController: ResourceView, ResourceLoadingView, ResourceErrorView {
     public func display(_ viewModel: UIImage) {
         cell?.feedImageView.setImageAnimated(viewModel)
