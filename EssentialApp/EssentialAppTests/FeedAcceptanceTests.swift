@@ -85,11 +85,12 @@ class FeedAcceptanceTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
     private func launch(
         httpClient: HTTPClientStub = .offline,
         store: InMemoryFeedStore = .empty
     ) -> ListViewController {
-        let sut = SceneDelegate(httpClient: httpClient, store: store)
+        let sut = SceneDelegate(httpClient: httpClient, store: store, scheduler: .immediateOnMainQueue)
         sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         sut.configureWindow()
         
@@ -98,7 +99,7 @@ class FeedAcceptanceTests: XCTestCase {
     }
     
     private func enterBackground(with store: InMemoryFeedStore) {
-        let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store)
+        let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store, scheduler: .immediateOnMainQueue)
         sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
     }
     
@@ -139,7 +140,7 @@ class FeedAcceptanceTests: XCTestCase {
             return Data()
         }
     }
-     
+    
     private func makeImageData0() -> Data { UIImage.make(withColor: .red).pngData()! }
     private func makeImageData1() -> Data { UIImage.make(withColor: .green).pngData()! }
     private func makeImageData2() -> Data { UIImage.make(withColor: .blue).pngData()! }
