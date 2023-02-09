@@ -56,6 +56,11 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         selection()
     }
     
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.cell = cell as? FeedImageCell
+        delegate.didRequestImage()
+    }
+    
     public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cancelLoad()
     }
@@ -66,11 +71,6 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         cancelLoad()
-    }
-    
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.cell = cell as? FeedImageCell
-        delegate.didRequestImage()
     }
     
     private func cancelLoad() {
@@ -96,3 +96,4 @@ extension FeedImageCellController: ResourceView, ResourceLoadingView, ResourceEr
         cell?.feedImageRetryButton.isHidden = viewModel.message == nil
     }
 }
+
